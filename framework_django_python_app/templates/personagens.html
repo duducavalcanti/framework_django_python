@@ -3,30 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <title>Personagens Avatar</title>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
   </head>
 
   <body>
-    <h1>Personagens Traduzidos</h1>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Personagens Traduzidos</h1>
 
-    <ul>
-      {% for personagem in personagens %}
+      <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Nome</th>
+            <th>Afiliação</th>
+            <th>Aliados</th>
+            <th>Inimigos</th>
+          </tr>
+        </thead>
 
-      <li>
-        <strong>Nome:</strong> {{ personagem.nome }}<br />
+        <tbody>
+          {% for personagem in personagens %}
+          <tr>
+            <td>{{ personagem.nome }}</td>
 
-        <strong>Afiliação:</strong>
-        {{ personagem.afiliacao }}<br />
+            <td>{{ personagem.afiliacao }}</td>
 
-        <strong>Aliados:</strong>
-        {{ personagem.aliados }}<br />
+            <td>{{ personagem.aliados }}</td>
 
-        <strong>Inimigos:</strong>
-        {{ personagem.inimigos }}
-
-        <hr />
-      </li>
-
-      {% endfor %}
-    </ul>
+            <td>{{ personagem.inimigos }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>
