@@ -17,17 +17,28 @@
       <table class="table table-striped table-hover table-bordered">
         <thead class="table-dark">
           <tr>
+            <th>#</th>
+            <th>Imagem</th>
             <th>Nome</th>
             <th>Afiliação</th>
             <th>Aliados</th>
             <th>Inimigos</th>
           </tr>
         </thead>
-
         <tbody>
           {% for personagem in personagens %}
           <tr>
-            <td>{{ personagem.nome }}</td>
+            <td>{{ forloop.counter }}</td>
+
+            <td>
+              <img
+                src="{{ personagem.foto }}"
+                alt="{{ personagem.nome }}"
+                width="80"
+              />
+            </td>
+
+            <td>{{ personagem.nome|title }}</td>
 
             <td>{{ personagem.afiliacao }}</td>
 

@@ -15,10 +15,12 @@ def personagens(request):
     for personagem in dados:
 
         personagens_traduzidos.append({
+            'id': personagem.get('_id'),
             'nome': personagem.get('name'),
             'afiliacao': personagem.get('affiliation'),
             'aliados': ', '.join(personagem.get('allies', [])),
-            'inimigos': ', '.join(personagem.get('enemies', []))
+            'inimigos': ', '.join(personagem.get('enemies', [])),
+            'foto': personagem.get('photoUrl')
         })
 
     return render(request, 'personagens.html', {
