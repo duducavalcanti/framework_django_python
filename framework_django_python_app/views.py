@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 import requests
 
 def personagens(request):
@@ -23,6 +24,15 @@ def personagens(request):
             'foto': personagem.get('photoUrl')
         })
 
+    # Cria páginas com 10 personagens cada
+    paginator = Paginator(personagens_traduzidos, 10)
+
+    # Obtém o número da página pela URL (?page=1)
+    page_number = request.GET.get('page')
+
+    # Retorna a página solicitada
+    page_obj = paginator.get_page(page_number)
+
     return render(request, 'personagens.html', {
-        'personagens': personagens_traduzidos
+        'page_obj': page_obj
     })
